@@ -1,10 +1,31 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import Notification from "vue-notification";
 
-Vue.config.productionTip = false
+import App from './App.vue';
+import router from './router';
+import doCookieOperation from './helper/CookieHelper';
 
-new Vue({
+Vue.config.productionTip = false;
+
+// prototyping any method to all vue instance
+Vue.prototype.$doCookieOperation = doCookieOperation;
+
+Vue.use(Notification);  // register custom plugin to vue
+
+const app = new Vue({
   router,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h(App),
+  methods: {
+    toggleBodyClass(type: string, className: string) {
+      const element: HTMLElement = document.body;
+
+      if (type === "addClass") {
+        element.classList.add(className);
+      } else {
+        element.classList.remove(className);
+      }
+    }
+  }
+});
+
+app.$mount('#app');
