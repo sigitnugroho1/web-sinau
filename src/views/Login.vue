@@ -133,7 +133,6 @@ export default class Login extends Vue {
   .login-page {
     height: 100vh;
     position: relative;
-    width: 700px;
   }
 
   .form-login {
